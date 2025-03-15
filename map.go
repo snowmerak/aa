@@ -103,13 +103,16 @@ func (ma *MapAssertion[K, V]) NotContainsAllKey(key ...K) *MapAssertion[K, V] {
 	for _, k := range key {
 		candidates[k] = struct{}{}
 	}
-	notContains := make([]K, 0)
 	for k := range candidates {
 		if _, ok := ma.m[k]; !ok {
-			notContains = append(notContains, k)
+			delete(candidates, k)
 		}
 	}
-	if len(notContains) > 0 {
+	if len(candidates) > 0 {
+		notContains := make([]K, 0)
+		for k := range candidates {
+			notContains = append(notContains, k)
+		}
 		ma.t.Fatalf("map contains key: %v", notContains)
 	}
 
