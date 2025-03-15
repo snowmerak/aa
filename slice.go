@@ -241,7 +241,7 @@ func (sa *SliceAssertion[T]) Nil() *SliceAssertion[T] {
 }
 
 func (sa *SliceAssertion[T]) NotEmpty() *SliceAssertion[T] {
-	if len(sa.a) > 0 {
+	if len(sa.a) == 0 {
 		sa.t.Fatalf("slice is empty")
 	}
 
