@@ -43,7 +43,7 @@ func TestBytesAssertion_ContainsAll(t *testing.T) {
 
 func TestBytesAssertion_NotContainsAll(t *testing.T) {
 	ba := aa.AssertBytes(t, []byte("test"))
-	ba.NotContainsAll([]byte("te"), []byte("xyz"))
+	ba.NotContainsAll([]byte("ts"), []byte("xyz"))
 }
 
 func TestBytesAssertion_ContainsAny(t *testing.T) {
